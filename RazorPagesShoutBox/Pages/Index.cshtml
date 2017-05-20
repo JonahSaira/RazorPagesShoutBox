@@ -18,7 +18,7 @@
             {
                 <p>
                     <strong>@shout.Name</strong> | @shout.Time.ToString()<br />
-                    @shout.Message
+                    @Html.Raw(shout.Message.Replace("\r\n", "<br />"))
                 </p>
             }
         }
@@ -28,3 +28,5 @@
         }
     </div>
 </div>
+
+<a href="AddShout">Add shout</a>
