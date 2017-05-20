@@ -1,0 +1,30 @@
+﻿@page
+@inject RazorPagesShoutBox.Data.ShoutBoxContext dataContext
+@{
+    ViewData["Title"] = "Home Page";
+
+    var shouts = dataContext.ShoutBoxItems
+                            .OrderByDescending(s => s.Time)
+                            .Take(100)
+                            .ToList();
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        @if (shouts.Any())
+        {
+            foreach (var shout in shouts)
+            {
+                <p>
+                    <strong>@shout.Name</strong> | @shout.Time.ToString()<br />
+                    @shout.Message
+                </p>
+            }
+        }
+        else
+        {
+            <p>No shouts... be the firts one!</p>
+        }
+    </div>
+</div>
